@@ -1,31 +1,24 @@
 const db = require('../config/connection');
-const { User } = require('../models');
+const { User, Post } = require('../models');
 
 const userData = require('./userData.json');
+const postData = require('./postData.json');
 
 db.once('open', async () => {
   // clean database
-  await User.deleteMany({});
+  try {
+      
+    await User.deleteMany({});
+    await Post.deleteMany({});
 
-  // bulk create each model
-  const users = await School.insertMany(userData);
+    const users = await User.insertMany(userData);
+    const posts = await Post.insertMany(postData);
 
-  /* for (newClass of classes) {
-    // randomly add each class to a school
-    const tempSchool = schools[Math.floor(Math.random() * schools.length)];
-    tempSchool.classes.push(newClass._id);
-    await tempSchool.save();
+    console.log('all done!');
+    process.exit(0);
 
-    // randomly add a professor to each class
-    const tempProfessor = professors[Math.floor(Math.random() * professors.length)];
-    newClass.professor = tempProfessor._id;
-    await newClass.save();
+  } catch (err) {
+    throw err;
+  }
 
-    // reference class on professor model, too
-    tempProfessor.classes.push(newClass._id);
-    await tempProfessor.save();
-  } */
-
-  console.log('all done!');
-  process.exit(0);
 });
