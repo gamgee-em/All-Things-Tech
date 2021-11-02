@@ -16,10 +16,13 @@ const userSchema = new Schema(
       type: String,
       required: true
     },
-    /* post: {
+    //* add relationship to post model
+    posts: [
+      {
       type: Schema.Types.ObjectId,
       ref: 'Post'
-    } */
+      }
+    ]
   }
 );
 
