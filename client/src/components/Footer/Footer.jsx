@@ -1,8 +1,10 @@
+import { Foot } from './FooterEl';
+
 const Footer = () => {
     return ( 
-        <footer>
+        <Foot>
             Footer
-        </footer>
+        </Foot>
      );
 }
  

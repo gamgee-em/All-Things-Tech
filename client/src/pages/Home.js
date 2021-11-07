@@ -1,12 +1,12 @@
+import { Main } from './HomeEl';
+
 const Home = () => {
     return ( 
-        <main className="bg-primary">
-            <div>
-                <h1>
-                    Home
-                </h1>
-            </div>
-        </main>
+        <Main className="bg-primary">
+            <h1>
+                Welcome To All Things Tech
+            </h1>
+        </Main>
      );
 }
  

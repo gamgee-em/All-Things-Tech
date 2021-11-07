@@ -4,10 +4,9 @@ import { FaBars } from 'react-icons/fa';
 
 export const Nav = styled.nav`
     background: #000;
-    height: 80px;
+    height: 10vh;
     display: flex;
-    justify-content: space-between;
-    padding: 0.5rem calc((100vw - 20px) /1.4);
+    justify-content: flex-end;
     letter-spacing: 0.05rem;
     z-index: 10;
 `;
@@ -20,7 +19,6 @@ export const Logo = styled.div`
     color: rgb(224,61,125);
 `;
 
-
 export const NavLink = styled(Link)`
     color: #fff;
     display: flex;
@@ -29,9 +27,13 @@ export const NavLink = styled(Link)`
     padding: 0 1rem;
     height: 100%;
     cursor: pointer;
-
+    white-space: nowrap;
     &:hover {
-        color rgb(224,61,125);
+        color: rgb(224,61,125);
+    }
+
+    &:focus {
+        color: rgb(224,61,125);
     }
 `;
 
@@ -73,9 +75,10 @@ export const NavBtnLink = styled(Link)`
     border-radius: 4px;
     background: rgb(224,61,125);
     padding: .6rem .8rem;
+    margin: 0 4rem 0 0;
     text-align: center;
     color: #fff;
-    width: 6rem;
+    width: 5.5rem;
     border: none;
     outline: none;
     cursor: pointer;

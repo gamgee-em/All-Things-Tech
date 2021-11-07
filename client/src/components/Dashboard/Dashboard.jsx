@@ -1,10 +1,12 @@
+import { Main } from './DashboardEl';
+
 const Dashboard = () => {
     return ( 
-        <>
-            <div>
+
+            <Main>
                 <h1>Dashboard</h1>
-            </div>
-        </>
+            </Main>
+            
      );
 }
  
