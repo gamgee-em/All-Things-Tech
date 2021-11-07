@@ -7,9 +7,19 @@ export const Nav = styled.nav`
     height: 80px;
     display: flex;
     justify-content: space-between;
-    padding: 0.5rem calc((100vw - 100px) /2);
+    padding: 0.5rem calc((100vw - 20px) /1.4);
+    letter-spacing: 0.05rem;
     z-index: 10;
 `;
+
+export const Logo = styled.div`
+    display: flex;
+    align-self: center;
+    position: absolute;
+    left: 4rem;
+    color: rgb(224,61,125);
+`;
+
 
 export const NavLink = styled(Link)`
     color: #fff;
@@ -17,17 +27,17 @@ export const NavLink = styled(Link)`
     align-items: center;
     text-decoration: none;
     padding: 0 1rem;
-    height 100%;
+    height: 100%;
     cursor: pointer;
 
-    &.hover {
-        color #15cdfc;
+    &:hover {
+        color rgb(224,61,125);
     }
 `;
 
 export const Bars = styled(FaBars)`
     display: none;
-    color: #fff;
+    color: rgb(224,61,125);
 
     @media screen and (max-width: 768px) {
         display: block;
@@ -35,7 +45,7 @@ export const Bars = styled(FaBars)`
         top: 0;
         right: 0;
         transform: translate(-100%, 75%);
-        font-size 1.8rem;
+        font-size: 1.8rem;
         cursor: pointer;
     }
 `;
@@ -43,7 +53,6 @@ export const Bars = styled(FaBars)`
 export const NavMenu = styled.div`
     display: flex;
     align-items: center;
-    margin-right -24px;
 
     @media screen and (max-width: 768px) {
         display: none; 
@@ -53,8 +62,8 @@ export const NavMenu = styled.div`
 export const NavBtn = styled.nav `
     display: flex;
     align-items: center;
-    margin-right: 24px;
-    padding-left: 24px; 
+    padding-left: 1rem;
+    
     @media screen and (max-width: 768px) {
         display: none
     }
@@ -62,9 +71,11 @@ export const NavBtn = styled.nav `
 
 export const NavBtnLink = styled(Link)`
     border-radius: 4px;
-    background: #256ce1;
-    padding: 10px 22px;
+    background: rgb(224,61,125);
+    padding: .6rem .8rem;
+    text-align: center;
     color: #fff;
+    width: 6rem;
     border: none;
     outline: none;
     cursor: pointer;
@@ -74,6 +85,6 @@ export const NavBtnLink = styled(Link)`
     &:hover {
         transition: all 0.2s ease-in-out;
         background: #fff;
-        color: #010606;
+        color: rgb(224,61,125);
     }
 `;
