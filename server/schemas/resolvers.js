@@ -7,14 +7,14 @@ const resolvers = {
       // Get and return all documents from the users collection
       return await User.find({}).populate('posts');
     },
-    user: async (parent, args) => {
-      return await User.findById(args.id).populate('posts');
+    user: async (parent, { id }) => {
+      return await User.findById({ _id: id }).populate('posts');
     },
     posts: async () => {
         return await Post.find({}).populate('users');
     },
-    post: async (parent, args) => {
-        return await Post.findById(args.id).populate('users');
+    post: async (parent, { id }) => {
+        return await Post.findById({ _id: id }).populate('users');
     },
   },
   Mutation: {
@@ -43,11 +43,23 @@ const resolvers = {
         },
       );
     },
-    addPost: async (parent, { title, content }) => {
-      return Post.create(
+    addPost: async (parent, { userId, title, content }) => {
+      /* return Post.create( */
+      return User.findOneAndUpdate(
+        {
+          _id: userId
+        },
         { 
-          title, 
-          content
+          $addToSet: {
+            posts: {
+              title,
+              content
+            }
+          }
+        },
+        {
+          new: true,
+          runValidators: true,
         }
       );
     },

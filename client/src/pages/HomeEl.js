@@ -5,4 +5,6 @@ export const Main = styled.main`
     justify-content: center;
     align-items: center;
     height: 85vh;
+    background-color: rgba(63, 63, 63, 0.8);
+
 `;

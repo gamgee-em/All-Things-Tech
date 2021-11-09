@@ -5,4 +5,6 @@ export const Foot = styled.footer`
     justify-content: center;
     align-items: center;
     height: 5vh;
+
+    background-color: rgba(63, 63, 63, 0.8);
 `;

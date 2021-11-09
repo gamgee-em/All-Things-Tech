@@ -23,11 +23,13 @@ export const NavLink = styled(Link)`
     color: #fff;
     display: flex;
     align-items: center;
-    text-decoration: none;
     padding: 0 1rem;
     height: 100%;
+
+    text-decoration: none;
     cursor: pointer;
     white-space: nowrap;
+
     &:hover {
         color: rgb(224,61,125);
     }
