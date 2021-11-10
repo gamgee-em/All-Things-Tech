@@ -4,7 +4,7 @@ const typeDefs = gql`
   # Define which fields are accessible from the User model
   type User {
     _id: ID
-    name: String
+    username: String
     email: String
     # Do not allow password to be reached by client
     password: String
@@ -29,8 +29,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(name: String!, email: String!, password: String!): User
-    updateUser(id: ID!, name: String!, email: String!, password: String!): User
+    addUser(username: String!, email: String!, password: String!): User
+    updateUser(id: ID!, username: String!, email: String!, password: String!): User
     
     addPost(title: String!, content: String!): Post
     updatePost(id: ID!, title: String!, content: String!): Post

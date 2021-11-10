@@ -18,22 +18,22 @@ const resolvers = {
     },
   },
   Mutation: {
-    addUser: async (parent, { name, email, password }) => {
+    addUser: async (parent, { username, email, password }) => {
       return await User.create(
         { 
-          name, 
+          username, 
           email, 
           password 
         },
       );
     },
-    updateUser: async (parent, { id, name, email, password }) => {
+    updateUser: async (parent, { id, username, email, password }) => {
       return await User.findOneAndUpdate(
         {
           _id: id
         },
         {
-          name,
+          username,
           email,
           password
         },
