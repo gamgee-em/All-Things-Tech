@@ -37,10 +37,14 @@ const SignUp = () => {
 
         try {
             const { data } = await addUser({
-                variables: { ...signUpState },
+                variables: { 
+                    ...signUpState 
+                },
             });
+            window.location.href = '/dashboard';
         } catch (err) {
             console.log(err);
+            throw err;
         };
     };
 
