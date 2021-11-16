@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 import { Main, RegisterForm, RegisterInput, RegisterBtnDiv, RegisterBtn } from './PagesElements';
+import Auth from '../utils/auth';
 
 const Register = () => {
 
@@ -41,7 +42,7 @@ const Register = () => {
                     ...registerState 
                 },
             });
-            window.location.href = '/dashboard';
+            Auth.login(data.addUser.token);
         } catch (err) {
             console.log(err);
             throw err;

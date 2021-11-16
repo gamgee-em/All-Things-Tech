@@ -1,7 +1,13 @@
 import './App.css';
 //! No longer use Switch | Instead use Routes
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { 
+  ApolloClient, 
+  InMemoryCache, 
+  ApolloProvider, 
+  createHttpLink 
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 
 //* Pages
 import Dashboard from './pages/Dashboard';
@@ -13,8 +19,22 @@ import Register from './pages/Register';
 import Footer from './components/Footer/Footer';
 import Navigation from './components/Navigation/Navigation';
 
-const client = new ApolloClient({
+const httpLink = createHttpLink({
   uri: '/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    }
+  }
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 

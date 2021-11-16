@@ -29,14 +29,12 @@ const resolvers = {
     login: async(parent, { username, password }) => {
       const user = await User.findOne({ username });
 
-      if (!user) {
-        throw new AuthenticationError('Invalid Username. Please try again!');
-      }
+      if (!user) throw new AuthenticationError('Invalid Username. Please try again!');
+
       const correctPw = await user.isCorrectPassword(password);
 
-      if (!correctPw) {
-        throw new AuthenticationError('Invalid Password. Please try again!');
-      }
+      if (!correctPw) throw new AuthenticationError('Invalid Password. Please try again!');
+      
       const token = signToken(user); 
       return { token, user };
     },
