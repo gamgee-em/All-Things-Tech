@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const userSchema = new Schema(
   {
@@ -10,21 +11,39 @@ const userSchema = new Schema(
     },
     email: {
       type: String,
-      required: true
+      required: true,
     },
     password: {
       type: String,
-      required: true
+      required: true,
+      minlength: 5,
     },
     //* add relationship to post model
     posts: [
       {
-      type: Schema.Types.ObjectId,
-      ref: 'Post'
+        title: {
+          type: String,
+          required: true,
+        },
+        content: {
+          type: String,
+          required: true,
+        }
       }
     ]
+});
+
+userSchema.pre('save', async function (next) {
+  if (this.isNew || this.isModified('password')) {
+    const saltRounds = 11;
+    this.password = await bcrypt.hash(this.password, saltRounds);
   }
-);
+  next();
+});
+
+userSchema.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password);
+};
 
 const User = model('User', userSchema);
 

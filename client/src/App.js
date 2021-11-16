@@ -2,15 +2,16 @@ import './App.css';
 //! No longer use Switch | Instead use Routes
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
 //* Pages
+import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 //* Components
 import Footer from './components/Footer/Footer';
 import Navigation from './components/Navigation/Navigation';
-import SignUp from './components/SignUp/SignUp';
-import SignIn from './components/SignIn/SignIn';
-import Dashboard from './components/Dashboard/Dashboard';
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -27,8 +28,8 @@ const App = () => {
 
           <Route path='/' exact element={<Home/>}/>
           <Route path='/dashboard' element={<Dashboard/>}/>
-          <Route path='/signup' element={<SignUp/>}/>
-          <Route path='/signin' element={<SignIn/>}/>
+          <Route path='/register' element={<Register/>}/>
+          <Route path='/login' element={<Login/>}/>
 
         </Routes>
           <Footer/>

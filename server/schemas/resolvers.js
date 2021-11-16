@@ -1,36 +1,35 @@
+const { AuthenticanError } = require('apollo-server-express');
 const { User, Post } = require('../models');
+const { signToken } = require('../utils/auth');
 
 // Create the functions that fulfill the queries defined in `typeDefs.js`
 const resolvers = {
   Query: {
     users: async () => {
       // Get and return all documents from the users collection
-      return await User.find({}).populate('posts');
+      return await User.find();
     },
-    user: async (parent, { id }) => {
-      return await User.findById({ _id: id }).populate('posts');
-    },
-    posts: async () => {
-        return await Post.find({}).populate('users');
-    },
-    post: async (parent, { id }) => {
-        return await Post.findById({ _id: id }).populate('users');
-    },
+    user: async(parent, { userId }) => {
+      return await User.findOne({ _id: userId })
+    }
   },
+
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
-      return await User.create(
+      const user = await User.create(
         { 
           username, 
           email, 
           password 
-        },
+        }
       );
+      const token = signToken(user);
+      return { token, user };
     },
-    updateUser: async (parent, { id, username, email, password }) => {
+    updateUser: async (parent, { userId, username, email, password }) => {
       return await User.findOneAndUpdate(
         {
-          _id: id
+          _id: userId
         },
         {
           username,
@@ -43,53 +42,8 @@ const resolvers = {
         },
       );
     },
-    addPost: async (parent, { userId, title, content }) => {
-      /* return Post.create( */
-      return User.findOneAndUpdate(
-        {
-          _id: userId
-        },
-        { 
-          $addToSet: {
-            posts: {
-              title,
-              content
-            }
-          }
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
-    },
-    updatePost: async (parent, { id, title, content }) => {
-      return Post.findOneAndUpdate(
-        { 
-          _id: id 
-        },
-        {
-          title,
-          content
-        },
-        {
-          new: true,
-        },
-      );
-    },
-    deleteUser: async (parent, { id }) => {
-      return User.findOneAndDelete(
-        { 
-          _id: id 
-        }
-      );
-    },
-    deletePost: async (parent, { id }) => {
-      return Post.findOneAndDelete(
-        { 
-          _id: id 
-        }
-      );
+    deleteUser: async (parent, { userId }) => {
+      return User.findOneAndDelete({ _id: userId });
     },
   }
 };

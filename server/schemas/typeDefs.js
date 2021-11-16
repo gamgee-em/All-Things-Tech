@@ -6,37 +6,39 @@ const typeDefs = gql`
     _id: ID
     username: String
     email: String
-    # Do not allow password to be reached by client
     password: String
     posts: [Post]
   }
 
+  # pass type Post to User posts
   type Post {
     _id: ID
     title: String
     content: String
-    users: [User]
+  }
+
+  type Auth {
+    token: ID!
+    user: User
   }
 
   # Define which queries the front end is allowed to make and what data is returned
   type Query {
-    users: [User]
-    posts: [Post]
-    
+    users: [User]!
+    user(userId: ID!): User
+
     # must provide id in query to run user or post query
-    user(id: ID!): User
-    post(id: ID!): Post
+    singleUser(userId: ID!): User
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): User
-    updateUser(id: ID!, username: String!, email: String!, password: String!): User
-    
-    addPost(title: String!, content: String!): Post
-    updatePost(id: ID!, title: String!, content: String!): Post
-    
-    deleteUser(id: ID!): User
-    deletePost(id: ID!): Post
+    addUser(username: String!, email: String!, password: String!): Auth    
+    login(username: String!, password: String!): Auth
+
+
+    updateUser(userId: ID!, username: String!, email: String!, password: String!): User
+    deleteUser(userId: ID!): User
+
   }
 `;
 

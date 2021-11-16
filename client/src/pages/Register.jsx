@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../../utils/mutations';
-import { Main, SignUpForm, SignUpInput, SignUpBtn, Button } from './SignUpEl';
+import { ADD_USER } from '../utils/mutations';
+import { Main, RegisterForm, RegisterInput, RegisterBtnDiv, RegisterBtn } from './PagesElements';
 
-const SignUp = () => {
+const Register = () => {
 
-    const [ signUpState, setSignUpState ] = useState(
+    const [ registerState, setRegisterState ] = useState(
         {
             username: '',
             email: '',
@@ -20,25 +20,25 @@ const SignUp = () => {
 
         const { name, value } = e.target;
 
-        setSignUpState(
+        setRegisterState(
             {
-                ...signUpState,
+                ...registerState,
                 [name]: value,
             }
             
         );
-        console.log(signUpState);
+        console.log(registerState);
     };
 
-    const handleSignUpForm = async (e) => {
+    const handleRegisterForm = async (e) => {
 
         e.preventDefault();
-        console.log( 'SignUpState: ', signUpState );
+        console.log( 'RegisterState: ', registerState );
 
         try {
             const { data } = await addUser({
                 variables: { 
-                    ...signUpState 
+                    ...registerState 
                 },
             });
             window.location.href = '/dashboard';
@@ -52,7 +52,7 @@ const SignUp = () => {
         
         e.preventDefault();
 
-        setSignUpState({
+        setRegisterState({
             username: '',
             email: '',
             password: '',
@@ -68,39 +68,39 @@ const SignUp = () => {
                 <Link to="/dashboard">back to the dashboard.</Link>
                 </p>
                 ) : (
-                <SignUpForm onSubmit={ handleSignUpForm }>
-                <h1> Sign Up </h1>
-                    <SignUpInput 
+                <RegisterForm onSubmit={ handleRegisterForm }>
+                <h1> Register </h1>
+                    <RegisterInput 
                         name='username'
                         type='text' 
                         placeholder='Username' 
-                        value={ signUpState.username }
+                        value={ registerState.username }
                         onChange={ handleChange }
                     />
-                    <SignUpInput 
+                    <RegisterInput 
                         name='email'
                         type='text' 
                         placeholder='Email'
-                        value={ signUpState.email }
+                        value={ registerState.email }
                         onChange={ handleChange }
                     />
-                    <SignUpInput 
+                    <RegisterInput 
                         name='password'
                         type='password'
                         placeholder='Password'
-                        value={ signUpState.password }
+                        value={ registerState.password }
                         onChange={ handleChange }
                     />
 
-                    <SignUpBtn>
-                        <Button type='submit'> Submit </Button>
-                        <Button onClick={handleClearForm}> Clear Form </Button>
-                    </SignUpBtn>
+                    <RegisterBtnDiv>
+                        <RegisterBtn type='submit'> Submit </RegisterBtn>
+                        <RegisterBtn onClick={handleClearForm}> Clear Form </RegisterBtn>
+                    </RegisterBtnDiv>
           
-                </SignUpForm>
+                </RegisterForm>
             )}
         </Main>
      );
 }
  
-export default SignUp;
+export default Register;

@@ -1,4 +1,4 @@
-import { Main } from './DashboardEl';
+import { Main } from './PagesElements';
 
 const Dashboard = () => {
     return ( 

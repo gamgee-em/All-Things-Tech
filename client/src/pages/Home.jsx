@@ -1,13 +1,14 @@
 import { useQuery } from '@apollo/client';
 import { QUERY_USERS } from '../utils/queries';
-import { Main } from './HomeEl';
+import { Main } from './PagesElements';
 
 const Home = () => {
-
+    
     const { loading, data } = useQuery(QUERY_USERS);
-    const users = data?.users || [];
+    
+    //const users = data?.users || [];
 
-    console.log('Users:', users);
+    //console.log('Users:', users);
 
     return ( 
         <Main className="bg-primary">

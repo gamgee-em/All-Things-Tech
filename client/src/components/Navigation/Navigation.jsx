@@ -27,14 +27,14 @@ const Navigation = () => {
                     <NavLink to='/dashboard' activeStyle>
                         Dashboard
                     </NavLink>
-                    <NavLink to='/signup' activeStyle>
-                        Sign Up
+                    <NavLink to='/register' activeStyle>
+                        Register
                     </NavLink>
                 </NavMenu>
 
                 <NavBtn>
-                    <NavBtnLink to='/signin'>
-                        Sign In
+                    <NavBtnLink to='/login'>
+                        Log In
                     </NavBtnLink>
                 </NavBtn>
 
