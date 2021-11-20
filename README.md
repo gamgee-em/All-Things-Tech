@@ -14,13 +14,17 @@ A Full-Stack MERN application
 * [Contact Information](#questions)
 * [Live Application](#application)
 ## __Dependencies__
-    react / react-router-dom / graphQL / apollo-server-express / express / mongoose 
+- react | react-router-dom | graphQL | apollo-server-express | express | mongoose | json web token | dotenv | bcrypt
 ## __Tests__
-    No tests provided.
+- No tests provided.
 ## __Installation__
-    npm i
+### __From CL__
+- ### cd all_things_tech/ 
+    - npm i
 ## __Usage__
-    
+### __Development Environment__
+- ### cd all_things_tech
+    - npm run develop
 ## __License__
 __Copyright 2021__
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
