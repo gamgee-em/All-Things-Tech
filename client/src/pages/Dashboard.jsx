@@ -8,39 +8,48 @@ import { Main } from './PagesElements';
 const Dashboard = () => {
 
     const { username: userParam } = useParams();
+
     const { loading, data } = useQuery(userParam ? QUERY_SINGLE_USER : QUERY_ME, {
         variables: { username: userParam },
     });
+
     const user = data?.me || data?.username || {};
+
     // redirect to personal dashboard if username matches
     if (Auth.loggedIn() && Auth.getUser().data.username === userParam) {
         return <Navigate to='/me' />
-    }
+    };
 
     if (loading) {
-        return <div> Loading... </div>
-    }
+        return (
+            <Main>
+                <h5> 
+                    Loading... 
+                </h5>
+            </Main>
+        )
+    };
 
     if (!user?.username) {
         return (
-            <h1>
-                Please login to access your Dashboard!
-            </h1>
+            <Main>
+                <h5>
+                    Please login to access your Dashboard!
+                </h5>
+            </Main>
         )
-    }
+    };
 
     //! add to helper file later
     const capitalizeUser = (user) => {
         return `${user.charAt(0).toUpperCase()}${user.slice(1)}`;
-    }
+    };
 
     return ( 
-
             <Main>
-      
-                <h1> Dashboard { capitalizeUser(user.username) } </h1>
-
-                
+                <h1> 
+                    Dashboard { capitalizeUser(user.username) } 
+                </h1>
             </Main>
      );
 }

@@ -67,9 +67,8 @@ const Login = () => {
 
         <Main>
             { data ? (
-                <p> Success! You may now head{' '}
-                    <Link to="/dashboard">back to the dashboard.</Link>
-                </p>
+                <> 
+                </>
             ) : (
                 <LoginForm onSubmit={ handleLoginForm }>
                     

@@ -2,11 +2,9 @@ const { AuthenticanError } = require('apollo-server-express');
 const { User, Post } = require('../models');
 const { signToken } = require('../utils/auth');
 
-// Create the functions that fulfill the queries defined in `typeDefs.js`
 const resolvers = {
   Query: {
     users: async () => {
-      // Get and return all documents from the users collection
       return await User.find();
     },
     user: async(parent, { userId }) => {
