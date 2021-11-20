@@ -38,14 +38,17 @@ const Login = () => {
         console.log( 'LoginState: ', loginState );
         try {
             const { data } = await login({
-                variables: {
-                    ...loginState
-                },
+                variables: { ...loginState },
             });
             Auth.login(data.login.token);
         } catch (e) {
             console.error(e);
         };
+
+        setLoginState({
+            username: '',
+            password: '',
+        });
     };
 
     const handleClearForm = (e) => {

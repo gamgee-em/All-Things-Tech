@@ -11,11 +11,16 @@ const resolvers = {
     },
     user: async(parent, { userId }) => {
       return await User.findOne({ _id: userId })
-    }
+    },
+    me: async ( parent, args, context ) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate('posts');
+      }
+      throw new AuthenticationError('Please login to proceed!');
+    },
   },
-
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
+    addUser: async ( parent, { username, email, password }) => {
       const user = await User.create(
         { 
           username, 

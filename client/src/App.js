@@ -47,7 +47,8 @@ const App = () => {
         <Routes>
 
           <Route path='/' exact element={<Home/>}/>
-          <Route path='/dashboard' element={<Dashboard/>}/>
+          <Route path='/me' exact element={<Dashboard/>}></Route>
+          <Route path='/dashboard' exact element={<Dashboard/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/login' element={<Login/>}/>
 

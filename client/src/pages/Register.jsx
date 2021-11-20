@@ -15,7 +15,7 @@ const Register = () => {
         }
     );
 
-    const [ addUser, {error, data } ] = useMutation( ADD_USER );
+    const [ addUser, { error, data } ] = useMutation( ADD_USER );
 
     const handleChange = (e) => {
 
@@ -43,8 +43,8 @@ const Register = () => {
                 },
             });
             Auth.login(data.addUser.token);
-        } catch (err) {
-            throw err;
+        } catch (e) {
+            console.error(e);
         };
     };
 

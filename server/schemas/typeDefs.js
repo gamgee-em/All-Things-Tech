@@ -24,11 +24,12 @@ const typeDefs = gql`
 
   # Define which queries the front end is allowed to make and what data is returned
   type Query {
-    users: [User]!
+    users: [User]
     user(userId: ID!): User
 
     # must provide id in query to run user or post query
     singleUser(userId: ID!): User
+    me: User
   }
 
   type Mutation {
